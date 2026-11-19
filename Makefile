@@ -6,7 +6,7 @@ LDLIBS += -lz
 have = $(shell printf '#include <$(1)>\nint main(void){return 0;}\n' | $(CC) -x c - -o /dev/null $(2) >/dev/null 2>&1 && echo yes)
 ifeq ($(call have,brotli/decode.h,-lbrotlidec),yes)
 CFLAGS += -DHAVE_BROTLI
-LDLIBS += -lbrotlidec
+LDLIBS += -lbrotlidec -lbrotlicommon
 endif
 ifeq ($(call have,lzma.h,-llzma),yes)
 CFLAGS += -DHAVE_LZMA
